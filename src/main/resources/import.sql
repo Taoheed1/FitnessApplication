@@ -1,0 +1,7 @@
+INSERT INTO CLASSROOM (trainerName, traineeName ) VALUES (1, 'John Doe', '1234')
+INSERT INTO CLASSROOM (trainerName, traineeName ) VALUES (2, 'Jane Doe', '1235')
+INSERT INTO CLASSROOM (trainerName, traineeName ) VALUES (3, 'Jim Taylor', '1236')
+INSERT INTO TRAINEE (traineeName) VALUES ('John Doe')
+INSERT INTO TRAINEE (traineeName) VALUES ('Jane Doe')
+INSERT INTO TRAINEE (traineeName) VALUES ('Jim Taylor')
+INSERT INTO TRAINEE (traineeName) VALUES ('Taoheed Afolayan')
