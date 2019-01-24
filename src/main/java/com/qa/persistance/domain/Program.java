@@ -17,9 +17,8 @@ public class Program {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long programID;
 	private String programName;
-	private String exerciseType;
+	private String exerciseName;
 	private int reps;
-	private String intensity;
 	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
 	private ArrayList<Account> users = new ArrayList<>();
 
@@ -28,9 +27,9 @@ public class Program {
 
 	}
 
-	public Program(String programName, String exerciseType, int reps) {
+	public Program(String programName, String exerciseName, int reps) {
 		this.programName = programName;
-		this.exerciseType = exerciseType;
+		this.exerciseName = exerciseName;
 		this.reps = reps;
 
 	}
@@ -43,12 +42,12 @@ public class Program {
 		this.programName = programName;
 	}
 
-	public String getExerciseType() {
-		return exerciseType;
+	public String getExerciseName() {
+		return exerciseName;
 	}
 
-	public void setExerciseType(String exerciseType) {
-		this.exerciseType = exerciseType;
+	public void setExerciseName(String exerciseName) {
+		this.exerciseName = exerciseName;
 	}
 
 	public int getReps() {
@@ -59,11 +58,4 @@ public class Program {
 		this.reps = reps;
 	}
 
-	public String getIntensity() {
-		return intensity;
-	}
-
-	public void setIntensity(String intensity) {
-		this.intensity = intensity;
-	}
 }

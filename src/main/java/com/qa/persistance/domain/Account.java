@@ -16,14 +16,16 @@ public class Account {
 	private String firstName;
 	@Size(min = 1, max = 20)
 	private String lastName;
+	private String proficiency;
 	private int programID;
 
 	public Account() {
 	}
 
-	public Account(String firstName, String lastName, int programID) {
+	public Account(String firstName, String lastName, String proficiency, int programID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.proficiency = proficiency;
 		this.programID = programID;
 	}
 
@@ -57,6 +59,14 @@ public class Account {
 
 	public void setProgramID(int programID) {
 		this.programID = programID;
+	}
+
+	public String getProficiency() {
+		return proficiency;
+	}
+
+	public void setProficiency(String proficiency) {
+		this.proficiency = proficiency;
 	}
 
 }
