@@ -12,13 +12,19 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long UserID;
-	@Size(min=1, max=20)
+	@Size(min = 1, max = 20)
 	private String firstName;
-	@Size(min=1, max=20)
+	@Size(min = 1, max = 20)
 	private String lastName;
-	private int programCode;
+	private int programID;
 
 	public Account() {
+	}
+
+	public Account(String firstName, String lastName, int programID) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.programID = programID;
 	}
 
 	public Long getUserID() {
@@ -45,17 +51,12 @@ public class Account {
 		this.lastName = lastName;
 	}
 
-	public int getProgramCode() {
-		return programCode;
+	public int getProgramID() {
+		return programID;
 	}
 
-	public void setProgramCode(int programCode) {
-		this.programCode = programCode;
+	public void setProgramID(int programID) {
+		this.programID = programID;
 	}
 
-	public Account(String firstName, String lastName, int programCode) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.programCode = programCode;
-	}
 }

@@ -1,9 +1,14 @@
 package com.qa.persistance.domain;
 
+import java.awt.List;
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Program {
@@ -15,6 +20,9 @@ public class Program {
 	private String exerciseType;
 	private int reps;
 	private String intensity;
+	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
+	private ArrayList<Account> users = new ArrayList<>();
+
 
 	public Program() {
 
