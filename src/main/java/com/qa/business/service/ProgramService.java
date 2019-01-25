@@ -4,7 +4,7 @@ public interface ProgramService {
 
 	String getAllPrograms();
 
-	String getProgramsByType(String program);
+	String getProgramsByType(String programType);
 
 	String addNewProgram(String program);
 

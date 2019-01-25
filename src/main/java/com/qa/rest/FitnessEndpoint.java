@@ -37,6 +37,13 @@ public class FitnessEndpoint {
 	public String getPrograms() {
 		return service_prog.getAllPrograms();
 	}
+	
+	@Path("/getProgramsByType")
+	@GET
+	@Produces({ "application/json" })
+	public String getProgramsOfType(String programType) {
+		return service_prog.getProgramsByType(programType);
+	}
 
 	@Path("/createAccount")
 	@POST
