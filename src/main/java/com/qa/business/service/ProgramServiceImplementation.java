@@ -2,18 +2,13 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
+import com.qa.persistance.repository.ProgramRepository;
 import com.qa.persistance.repository.UserRepository;
 
-public class FitnessServiceImplementation implements FitnessService {
+public class ProgramServiceImplementation implements ProgramService{
 
 	@Inject
-	private UserRepository repo;
-
-	@Override
-	public String getAllUsers() {
-		// TODO Auto-generated method stub
-		return repo.getAllUsers();
-	}
+	private ProgramRepository repo;
 
 	@Override
 	public String getAllPrograms() {
@@ -22,21 +17,21 @@ public class FitnessServiceImplementation implements FitnessService {
 	}
 
 	@Override
-	public String addNewAccount(String account) {
+	public String getProgramsByType(String program) {
 		// TODO Auto-generated method stub
-		return repo.addNewAccount(account);
+		return repo.getProgramsByType(program);
 	}
 
 	@Override
-	public String deleteUser(long userID) {
+	public String addNewProgram(String program) {
 		// TODO Auto-generated method stub
-		return repo.deleteUser(userID);
+		return repo.addNewProgram(program);
 	}
 
 	@Override
-	public String updateUser(long userID, String account) {
+	public String deleteProgram(long programID) {
 		// TODO Auto-generated method stub
-		return repo.updateUser(userID, account);
+		return repo.deleteProgram(programID);
 	}
 
 	@Override
@@ -45,4 +40,5 @@ public class FitnessServiceImplementation implements FitnessService {
 		return repo.updateProgram(programID, program);
 	}
 
+	
 }
