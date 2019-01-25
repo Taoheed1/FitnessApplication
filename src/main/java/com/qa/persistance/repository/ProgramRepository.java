@@ -4,7 +4,7 @@ public interface ProgramRepository {
 	
 	String getAllPrograms();
 	
-	String getProgramsByType(String program);
+	String getProgramsByType(String programType);
 
 	String addNewProgram(String program);
 

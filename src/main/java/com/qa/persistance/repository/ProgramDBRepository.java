@@ -37,9 +37,11 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String getProgramsByType(String program) {
+	public String getProgramsByType(String programType) {
 		// TODO Auto-generated method stub
-		return null;
+		Query query = manager.createQuery("Select a FROM Progam a WHERE a.ProgramType = "+ programType);
+		Collection<Program> ProgramsOfType = (Collection<Program>) query.getResultList();
+		return util.getJSONForObject(ProgramsOfType);
 	}
 
 	@Override
