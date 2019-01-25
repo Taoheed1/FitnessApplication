@@ -1,6 +1,5 @@
 package com.qa.persistance.domain;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;

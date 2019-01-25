@@ -3,7 +3,7 @@ package com.qa.persistance.repository;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import com.qa.persistance.domain.Account;
 import com.qa.persistance.domain.Program;
 import com.qa.util.JSONUtil;
 
@@ -29,25 +28,22 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String getAllPrograms() {
-		// TODO Auto-generated method stub
 		Query query = manager.createQuery("Select a FROM Program a");
-		Collection<Program> Programs = (Collection<Program>) query.getResultList();
-		return util.getJSONForObject(Programs);
+		List<Program> allPrograms = query.getResultList();
+		return util.getJSONForObject(allPrograms);
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String getProgramsByType(String programType) {
-		// TODO Auto-generated method stub
 		Query query = manager.createQuery("Select a FROM Progam a WHERE a.ProgramType = "+ programType);
-		Collection<Program> ProgramsOfType = (Collection<Program>) query.getResultList();
-		return util.getJSONForObject(ProgramsOfType);
+		List<Program> programsOfType = query.getResultList();
+		return util.getJSONForObject(programsOfType);
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String addNewProgram(String program) {
-		// TODO Auto-generated method stub
 		manager.persist(program);
 		return "{\"message\":\"program has been successfully created\"}";
 	}
@@ -55,7 +51,6 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteProgram(long programID) {
-		// TODO Auto-generated method stub
 		Program programInDB = findProgram(programID);
 		if (programInDB != null) {
 			manager.remove(programInDB);
@@ -67,7 +62,6 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String updateProgram(long programID, String program) {
-		// TODO Auto-generated method stub
 		Program programInDB = findProgram(programID);
 		if (programInDB != null) {
 			manager.remove(programInDB);

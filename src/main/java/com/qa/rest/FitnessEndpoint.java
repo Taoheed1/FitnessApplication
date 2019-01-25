@@ -9,8 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import org.apache.log4j.Logger;
-
 import com.qa.business.service.ProgramService;
 import com.qa.business.service.UserService;
 import com.qa.persistance.domain.Account;
@@ -20,7 +18,7 @@ public class FitnessEndpoint {
 
 	@Inject
 	private UserService service_user;
-	
+
 	@Inject
 	private ProgramService service_prog;
 
@@ -37,7 +35,7 @@ public class FitnessEndpoint {
 	public String getPrograms() {
 		return service_prog.getAllPrograms();
 	}
-	
+
 	@Path("/getProgramsByType")
 	@GET
 	@Produces({ "application/json" })
@@ -76,7 +74,7 @@ public class FitnessEndpoint {
 	public void setService(UserService service_user) {
 		this.service_user = service_user;
 	}
-	
+
 	public void setService(ProgramService service_prog) {
 		this.service_prog = service_prog;
 	}
