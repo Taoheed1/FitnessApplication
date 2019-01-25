@@ -13,7 +13,7 @@ import com.qa.business.service.ProgramService;
 import com.qa.business.service.UserService;
 import com.qa.persistance.domain.Account;
 
-@Path("/classroom")
+@Path("/fitness")
 public class FitnessEndpoint {
 
 	@Inject
