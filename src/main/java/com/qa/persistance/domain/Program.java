@@ -19,6 +19,7 @@ public class Program {
 	private String programName;
 	private String exerciseName;
 	private int reps;
+	private int sets;
 	private ProgramType programType;
 	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
 	private ArrayList<Account> users = new ArrayList<>();
@@ -55,6 +56,14 @@ public class Program {
 
 	public void setReps(int reps) {
 		this.reps = reps;
+	}
+
+	public int getSets() {
+		return sets;
+	}
+
+	public void setSets(int sets) {
+		this.sets = sets;
 	}
 
 	public long getProgramID() {
