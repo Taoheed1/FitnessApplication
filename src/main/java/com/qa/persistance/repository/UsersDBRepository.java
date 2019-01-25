@@ -58,7 +58,14 @@ public class UsersDBRepository implements UserRepository {
 	@Transactional(REQUIRED)
 	public String updateUser(long userID, String account) {
 		// TODO Auto-generated method stub
-		return null;
+		Account accountInDB = findAccount(userID);
+		if (accountInDB != null) {
+			manager.remove(accountInDB);
+			manager.persist(account);
+			return "{\"message\":\"account has been successfully updated\"}";
+		}else {
+			return "{\"message\": \"account does not exist\"}";
+		}
 	}
 
 	private Account findAccount(long userID) {

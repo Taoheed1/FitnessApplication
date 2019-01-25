@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistance.domain.Account;
 import com.qa.persistance.domain.Program;
 import com.qa.util.JSONUtil;
 
@@ -43,21 +44,35 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Transactional(REQUIRED)
 	public String addNewProgram(String program) {
 		// TODO Auto-generated method stub
-		return null;
+		manager.persist(program);
+		return "{\"message\":\"program has been successfully created\"}";
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteProgram(long programID) {
 		// TODO Auto-generated method stub
-		return null;
+		Program programInDB = findProgram(programID);
+		if (programInDB != null) {
+			manager.remove(programInDB);
+			return "{\"message\":\"program has been successfully deleted\"}";
+		}
+		 return "{\"message\":\"program does not exist\"}";
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String updateProgram(long programID, String program) {
 		// TODO Auto-generated method stub
-		return null;
+		Program programInDB = findProgram(programID);
+		if (programInDB != null) {
+			manager.remove(programInDB);
+			manager.persist(program);
+			return "{\"message\":\"program has been successfully updated\"}";
+		} else {
+			return "{\"message\": \"program does not exist\"}";
+		}
+
 	}
 
 	private Program findProgram(long programID) {

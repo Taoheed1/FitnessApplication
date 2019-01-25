@@ -18,7 +18,7 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public String addNewAccount(String account) {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.addNewAccount(account);
 	}
 
 	@Override
