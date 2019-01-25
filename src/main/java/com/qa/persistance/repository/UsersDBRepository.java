@@ -31,16 +31,7 @@ public class UsersDBRepository implements UserRepository {
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> Users = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(Users);
-	}
-
-	@Override
-	@Transactional(REQUIRED)
-	public String getAllPrograms() {
-		// TODO Auto-generated method stub
-		Query query = manager.createQuery("Select a FROM Program a");
-		Collection<Program> Programs = (Collection<Program>) query.getResultList();
-		return util.getJSONForObject(Programs);
-	}
+	}	
 
 	@Override
 	@Transactional(REQUIRED)
@@ -70,19 +61,8 @@ public class UsersDBRepository implements UserRepository {
 		return null;
 	}
 
-	@Override
-	@Transactional(REQUIRED)
-	public String updateProgram(long programID, String program) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private Account findAccount(long userID) {
 		return manager.find(Account.class, userID);
-	}
-
-	private Program findProgram(long programID) {
-		return manager.find(Program.class, programID);
 	}
 
 }
