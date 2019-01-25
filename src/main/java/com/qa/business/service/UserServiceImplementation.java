@@ -2,6 +2,7 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
+import com.qa.persistance.domain.Account;
 import com.qa.persistance.repository.UserRepository;
 
 public class UserServiceImplementation implements UserService {
@@ -16,7 +17,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public String addNewAccount(String account) {
+	public String addNewAccount(Account account) {
 		// TODO Auto-generated method stub
 		return repo.addNewAccount(account);
 	}
@@ -28,7 +29,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public String updateUser(long userID, String account) {
+	public String updateUser(long userID, Account account) {
 		// TODO Auto-generated method stub
 		return repo.updateUser(userID, account);
 	}

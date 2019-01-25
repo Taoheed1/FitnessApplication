@@ -31,14 +31,15 @@ public class UsersDBRepository implements UserRepository {
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> Users = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(Users);
-	}	
+	}
 
 	@Override
 	@Transactional(REQUIRED)
-	public String addNewAccount(String account) {
+	public String addNewAccount(Account account) {
 		// TODO Auto-generated method stub
-		Account user = util.getObjectForJSON(account, Account.class);
-		manager.persist(user);
+		//Account user = util.getObjectForJSON(account, Account.class);
+		Program program = findProgram(account.getProgramID());
+		manager.persist(account);
 		return "{\"message\": \"account has been sucessfully added\"}";
 	}
 
@@ -56,20 +57,25 @@ public class UsersDBRepository implements UserRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String updateUser(long userID, String account) {
+	public String updateUser(long userID, Account account) {
 		// TODO Auto-generated method stub
+		Program program = findProgram(account.getProgramID());
 		Account accountInDB = findAccount(userID);
-		if (accountInDB != null) {
+		if (program != null) {
 			manager.remove(accountInDB);
-			manager.persist(account);
+			manager.persist(program);
 			return "{\"message\":\"account has been successfully updated\"}";
-		}else {
+		} else {
 			return "{\"message\": \"account does not exist\"}";
 		}
 	}
 
 	private Account findAccount(long userID) {
 		return manager.find(Account.class, userID);
+	}
+
+	private Program findProgram(long programID) {
+		return manager.find(Program.class, programID);
 	}
 
 }
