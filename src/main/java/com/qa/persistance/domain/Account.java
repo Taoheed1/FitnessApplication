@@ -13,18 +13,17 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long UserID;
 	@Size(min = 1, max = 20)
-	private String firstName;
-	@Size(min = 1, max = 20)
-	private String lastName;
+	private String userName;
 	private String proficiency;
 	private int programID;
+	private String password;
 
 	public Account() {
 	}
 
-	public Account(String firstName, String lastName, String proficiency, int programID) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Account(String userName, String password, String proficiency, int programID) {
+		this.userName = userName;
+		this.password = password;
 		this.proficiency = proficiency;
 		this.programID = programID;
 	}
@@ -37,20 +36,20 @@ public class Account {
 		UserID = userID;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getProgramID() {
