@@ -1,9 +1,10 @@
 package com.qa.persistance.domain;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +21,10 @@ public class Program {
 	private int reps;
 	private int sets;
 	private ProgramType programType;
-	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
-	private ArrayList<Account> users = new ArrayList<>();
+//	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="programID", cascade=CascadeType.ALL)
+	private List<Account> users = new ArrayList<>();
+//	private Set<Account> users = new HashSet<>();
 
 
 	public Program() {
@@ -81,11 +84,11 @@ public class Program {
 		this.programType = programType;
 	}
 
-	public ArrayList<Account> getUsers() {
+	public List<Account> getUsers() {
 		return users;
 	}
 
-	public void setUsers(ArrayList<Account> users) {
+	public void setUsers(List<Account> users) {
 		this.users = users;
 	}
 
