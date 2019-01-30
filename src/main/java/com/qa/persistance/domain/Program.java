@@ -21,10 +21,8 @@ public class Program {
 	private int reps;
 	private int sets;
 	private ProgramType programType;
-//	@OneToMany(mappedBy="userID", cascade=CascadeType.ALL)
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="programID", cascade=CascadeType.ALL)
 	private List<Account> users = new ArrayList<>();
-//	private Set<Account> users = new HashSet<>();
 
 
 	public Program() {
