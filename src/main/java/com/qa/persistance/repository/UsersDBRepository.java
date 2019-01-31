@@ -61,9 +61,8 @@ public class UsersDBRepository implements UserRepository {
 		Account user = util.getObjectForJSON(account, Account.class);
 		Account userInDB = findAccount(userID);
 		//Program program = findProgram(account.getProgramID());
-		Account accountInDB = findAccount(userID);
 		if (userInDB != null) {
-			manager.remove(accountInDB);
+			manager.remove(userInDB);
 			manager.persist(user);
 			return "{\"message\":\"account has been successfully updated\"}";
 		} else {

@@ -28,10 +28,11 @@ public class Program {
 	public Program() {
 	}
 
-	public Program(String programName, String exerciseName, int reps) {
+	public Program(String programName, String exerciseName, int reps, ProgramType programType) {
 		this.programName = programName;
 		this.exerciseName = exerciseName;
 		this.reps = reps;
+		this.programType = programType;
 	}
 
 	public String getProgramName() {
