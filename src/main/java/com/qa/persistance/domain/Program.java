@@ -20,7 +20,7 @@ public class Program {
 	private String exerciseName;
 	private int reps;
 	private int sets;
-	private ProgramType programType;
+	private String programType;
 //	@OneToMany(fetch = FetchType.EAGER, mappedBy="programID", cascade=CascadeType.ALL)
 //	private List<Account> users = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class Program {
 	public Program() {
 	}
 
-	public Program(String programName, String exerciseName, int reps, int sets, ProgramType programType) {
+	public Program(String programName, String exerciseName, int reps, int sets, String programType) {
 		this.programName = programName;
 		this.exerciseName = exerciseName;
 		this.reps = reps;
@@ -76,11 +76,11 @@ public class Program {
 		this.programID = programID;
 	}
 
-	public ProgramType getProgramType() {
+	public String getProgramType() {
 		return programType;
 	}
 
-	public void setProgramType(ProgramType programType) {
+	public void setProgramType(String programType) {
 		this.programType = programType;
 	}
 

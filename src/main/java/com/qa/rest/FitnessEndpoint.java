@@ -84,11 +84,11 @@ public class FitnessEndpoint {
 		return service_prog.updateProgram(programID, program);
 	}
 
-	public void setService(UserService service_user) {
+	public void setUserService(UserService service_user) {
 		this.service_user = service_user;
 	}
 
-	public void setService(ProgramService service_prog) {
+	public void setProgramService(ProgramService service_prog) {
 		this.service_prog = service_prog;
 	}
 
