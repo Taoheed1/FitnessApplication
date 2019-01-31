@@ -39,7 +39,7 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Transactional(REQUIRED)
 	public String getProgramsByType(String programType) {
 		Query query = manager.createQuery("Select a FROM Program a WHERE a.ProgramType = " + programType);
-		List<Program> programsOfType = query.getResultList();
+		Collection<Program> programsOfType = (Collection<Program>)query.getResultList();
 		return util.getJSONForObject(programsOfType);
 	}
 
