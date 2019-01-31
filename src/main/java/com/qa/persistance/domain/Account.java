@@ -14,9 +14,9 @@ public class Account {
 	private Long UserID;
 	@Size(min = 1, max = 20)
 	private String userName;
+	private String password;
 	private String proficiency;
 	private int programID;
-	private String password;
 	
 
 	public Account() {
