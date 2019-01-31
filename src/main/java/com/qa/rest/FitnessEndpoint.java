@@ -36,10 +36,10 @@ public class FitnessEndpoint {
 		return service_prog.getAllPrograms();
 	}
 
-	@Path("/getProgramsByType")
+	@Path("/getProgramsByType/{type}")
 	@GET
 	@Produces({ "application/json" })
-	public String getProgramsOfType(String programType) {
+	public String getProgramsOfType(@PathParam("type") String programType) {
 		return service_prog.getProgramsByType(programType);
 	}
 
@@ -49,6 +49,13 @@ public class FitnessEndpoint {
 	public String addAccount(String account) {
 		return service_user.addNewAccount(account);
 	}
+	
+	@Path("/createProgram")
+	@POST
+	@Produces({ "application/json" })
+	public String addProgram(String program) {
+		return service_prog.addNewProgram(program);
+	}
 
 	@Path("/deleteAccount/{id}")
 	@DELETE
@@ -56,7 +63,13 @@ public class FitnessEndpoint {
 	public String deleteAccount(@PathParam("id") Long userID) {
 		return service_user.deleteUser(userID);
 	}
-
+	
+	@Path("/deleteProgram/{id}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteProgram(@PathParam("id") Long programID) {
+		return service_prog.deleteProgram(programID);
+	}
 	@Path("/updateUser/{id}")
 	@PUT
 	@Produces({ "application/json" })
