@@ -29,7 +29,6 @@ public class UsersDBRepository implements UserRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String getAllUsers() {
-		// TODO Auto-generated method stub
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> accounts = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(accounts);
@@ -38,7 +37,6 @@ public class UsersDBRepository implements UserRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String addNewAccount(String account) {
-		// TODO Auto-generated method stub
 		Account user = util.getObjectForJSON(account, Account.class);
 		//Program program = findProgram(account.getProgramID());
 		manager.persist(user);
@@ -48,7 +46,6 @@ public class UsersDBRepository implements UserRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteUser(long userID) {
-		// TODO Auto-generated method stub
 		Account accountInDB = findAccount(userID);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);

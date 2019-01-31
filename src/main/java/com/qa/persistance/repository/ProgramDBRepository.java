@@ -3,6 +3,7 @@ package com.qa.persistance.repository;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.inject.Default;
@@ -30,14 +31,14 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Transactional(REQUIRED)
 	public String getAllPrograms() {
 		Query query = manager.createQuery("Select a FROM Program a");
-		List<Program> programs = query.getResultList();
+		Collection<Program> programs = (Collection<Program>)query.getResultList();
 		return util.getJSONForObject(programs);
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String getProgramsByType(String programType) {
-		Query query = manager.createQuery("Select a FROM Progam a WHERE a.ProgramType = "+ programType);
+		Query query = manager.createQuery("Select a FROM Program a WHERE a.ProgramType = " + programType);
 		List<Program> programsOfType = query.getResultList();
 		return util.getJSONForObject(programsOfType);
 	}
@@ -58,16 +59,17 @@ public class ProgramDBRepository implements ProgramRepository {
 			manager.remove(programInDB);
 			return "{\"message\":\"program has been successfully deleted\"}";
 		}
-		 return "{\"message\":\"program does not exist\"}";
+		return "{\"message\":\"program does not exist\"}";
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String updateProgram(long programID, String program) {
+		Program programJSON = util.getObjectForJSON(program, Program.class);
 		Program programInDB = findProgram(programID);
 		if (programInDB != null) {
 			manager.remove(programInDB);
-			manager.persist(program);
+			manager.persist(programJSON);
 			return "{\"message\":\"program has been successfully updated\"}";
 		} else {
 			return "{\"message\": \"program does not exist\"}";
@@ -77,6 +79,14 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	private Program findProgram(long programID) {
 		return manager.find(Program.class, programID);
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
+	public void setUtil(JSONUtil util) {
+		this.util = util;
 	}
 
 }
