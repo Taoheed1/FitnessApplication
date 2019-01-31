@@ -16,17 +16,14 @@ public class Account {
 	private String userName;
 	private String password;
 	private String proficiency;
-	private int programID;
-	
 
 	public Account() {
 	}
 
-	public Account(String userName, String password, String proficiency, int programID) {
+	public Account(String userName, String password, String proficiency) {
 		this.userName = userName;
 		this.password = password;
 		this.proficiency = proficiency;
-		this.programID = programID;
 	}
 
 	public Long getUserID() {
@@ -51,14 +48,6 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public int getProgramID() {
-		return programID;
-	}
-
-	public void setProgramID(int programID) {
-		this.programID = programID;
 	}
 
 	public String getProficiency() {
