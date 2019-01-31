@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistance.domain.Account;
 import com.qa.persistance.domain.Program;
 import com.qa.util.JSONUtil;
 
@@ -29,8 +30,8 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Transactional(REQUIRED)
 	public String getAllPrograms() {
 		Query query = manager.createQuery("Select a FROM Program a");
-		List<Program> allPrograms = query.getResultList();
-		return util.getJSONForObject(allPrograms);
+		List<Program> programs = query.getResultList();
+		return util.getJSONForObject(programs);
 	}
 
 	@Override
@@ -44,7 +45,8 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String addNewProgram(String program) {
-		manager.persist(program);
+		Program newProgram = util.getObjectForJSON(program, Program.class);
+		manager.persist(newProgram);
 		return "{\"message\":\"program has been successfully created\"}";
 	}
 

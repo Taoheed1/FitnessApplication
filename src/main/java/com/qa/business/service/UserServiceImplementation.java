@@ -16,7 +16,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public String addNewAccount(Account account) {
+	public String addNewAccount(String account) {
 		return repo.addNewAccount(account);
 	}
 
@@ -26,7 +26,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public String updateUser(long userID, Account account) {
+	public String updateUser(long userID, String account) {
 		return repo.updateUser(userID, account);
 	}
 

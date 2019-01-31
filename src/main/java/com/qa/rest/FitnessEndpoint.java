@@ -46,7 +46,7 @@ public class FitnessEndpoint {
 	@Path("/createAccount")
 	@POST
 	@Produces({ "application/json" })
-	public String addAccount(Account account) {
+	public String addAccount(String account) {
 		return service_user.addNewAccount(account);
 	}
 
@@ -60,7 +60,7 @@ public class FitnessEndpoint {
 	@Path("/updateUser/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long userID, Account account) {
+	public String updateAccount(@PathParam("id") Long userID, String account) {
 		return service_user.updateUser(userID, account);
 	}
 

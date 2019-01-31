@@ -31,17 +31,17 @@ public class UsersDBRepository implements UserRepository {
 	public String getAllUsers() {
 		// TODO Auto-generated method stub
 		Query query = manager.createQuery("Select a FROM Account a");
-		Collection<Account> Users = (Collection<Account>) query.getResultList();
-		return util.getJSONForObject(Users);
+		Collection<Account> accounts = (Collection<Account>) query.getResultList();
+		return util.getJSONForObject(accounts);
 	}
 
 	@Override
 	@Transactional(REQUIRED)
-	public String addNewAccount(Account account) {
+	public String addNewAccount(String account) {
 		// TODO Auto-generated method stub
-		//Account user = util.getObjectForJSON(account, Account.class);
-		Program program = findProgram(account.getProgramID());
-		manager.persist(account);
+		Account user = util.getObjectForJSON(account, Account.class);
+		//Program program = findProgram(account.getProgramID());
+		manager.persist(user);
 		return "{\"message\": \"account has been sucessfully added\"}";
 	}
 
@@ -59,13 +59,15 @@ public class UsersDBRepository implements UserRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String updateUser(long userID, Account account) {
+	public String updateUser(long userID, String account) {
 		// TODO Auto-generated method stub
-		Program program = findProgram(account.getProgramID());
+		Account user = util.getObjectForJSON(account, Account.class);
+		Account userInDB = findAccount(userID);
+		//Program program = findProgram(account.getProgramID());
 		Account accountInDB = findAccount(userID);
-		if (program != null) {
+		if (userInDB != null) {
 			manager.remove(accountInDB);
-			manager.persist(program);
+			manager.persist(user);
 			return "{\"message\":\"account has been successfully updated\"}";
 		} else {
 			return "{\"message\": \"account does not exist\"}";
@@ -78,6 +80,14 @@ public class UsersDBRepository implements UserRepository {
 
 	private Program findProgram(long programID) {
 		return manager.find(Program.class, programID);
+	}
+	
+	public void setManager(EntityManager manager) {
+		this.manager=manager;
+	}
+	
+	public void setUtil(JSONUtil util) {
+		this.util=util;
 	}
 
 }

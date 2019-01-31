@@ -6,10 +6,10 @@ public interface UserService {
 
 	String getAllUsers();
 
-	String addNewAccount(Account account);
+	String addNewAccount(String account);
 
 	String deleteUser(long userID);
 
-	String updateUser(long userID, Account account);
+	String updateUser(long userID, String account);
 
 }
