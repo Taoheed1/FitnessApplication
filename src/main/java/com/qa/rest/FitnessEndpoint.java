@@ -46,7 +46,7 @@ public class FitnessEndpoint {
 	@Path("/getProgramsByName/{name}")
 	@GET
 	@Produces({ "application/json" })
-	public String getProgramsName(@PathParam("type") String programName) {
+	public String getProgramsName(@PathParam("name") String programName) {
 		return service_prog.getProgramsByName(programName);
 	}
 
