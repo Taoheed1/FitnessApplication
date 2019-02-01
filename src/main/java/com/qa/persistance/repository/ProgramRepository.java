@@ -8,7 +8,7 @@ public interface ProgramRepository {
 
 	String addNewProgram(String program);
 
-	String deleteProgram(long programID);
+	String deleteProgram(String programName);
 
-	String updateProgram(long programID, String program);
+	String updateProgram(String programName, String program);
 }

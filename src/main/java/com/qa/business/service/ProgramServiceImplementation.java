@@ -25,13 +25,13 @@ public class ProgramServiceImplementation implements ProgramService{
 	}
 
 	@Override
-	public String deleteProgram(long programID) {
-		return repo.deleteProgram(programID);
+	public String deleteProgram(String programName) {
+		return repo.deleteProgram(programName);
 	}
 
 	@Override
-	public String updateProgram(long programID, String program) {
-		return repo.updateProgram(programID, program);
+	public String updateProgram(String programName, String program) {
+		return repo.updateProgram(programName, program);
 	}
 
 	

@@ -14,16 +14,14 @@ import javax.persistence.OneToMany;
 public class Program {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long programID;
 	private String programName;
 	private String exerciseName;
 	private int reps;
 	private int sets;
 	private String programType;
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy="programID", cascade=CascadeType.ALL)
-//	private List<Account> users = new ArrayList<>();
-
+	// @OneToMany(fetch = FetchType.EAGER, mappedBy="programName",
+	// cascade=CascadeType.ALL)
+	// private List<Account> users = new ArrayList<>();
 
 	public Program() {
 	}
@@ -68,14 +66,6 @@ public class Program {
 		this.sets = sets;
 	}
 
-	public long getProgramID() {
-		return programID;
-	}
-
-	public void setProgramID(long programID) {
-		this.programID = programID;
-	}
-
 	public String getProgramType() {
 		return programType;
 	}
@@ -84,12 +74,12 @@ public class Program {
 		this.programType = programType;
 	}
 
-//	public List<Account> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<Account> users) {
-//		this.users = users;
-//	}
+	// public List<Account> getUsers() {
+	// return users;
+	// }
+	//
+	// public void setUsers(List<Account> users) {
+	// this.users = users;
+	// }
 
 }

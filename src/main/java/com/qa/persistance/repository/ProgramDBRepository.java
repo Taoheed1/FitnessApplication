@@ -5,12 +5,14 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.qa.persistance.domain.Account;
@@ -31,18 +33,23 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Transactional(REQUIRED)
 	public String getAllPrograms() {
 		Query query = manager.createQuery("Select a FROM Program a");
-		Collection<Program> programs = (Collection<Program>)query.getResultList();
+		Collection<Program> programs = (Collection<Program>) query.getResultList();
 		return util.getJSONForObject(programs);
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String getProgramsByType(String programType) {
-		Query query = manager.createQuery("Select a FROM Program a WHERE a.ProgramType = " + programType);
-		Collection<Program> programsOfType = (Collection<Program>)query.getResultList();
+//		TypedQuery<Program> query = manager.createQuery("Select a FROM Program a WHERE a.programType", Program.class);
+//		Collection<Program> programsOfType = (Collection<Program>) query.setParameter("programType", programType).getResultList();
+		Query query = manager.createQuery("Select a FROM Program a");
+		List<Program> allPrograms = query.getResultList();
+		List<Program> programsOfType = allPrograms.stream().filter(i -> i.getProgramType().equals(programType)).collect(Collectors.toList());
+
 		return util.getJSONForObject(programsOfType);
 	}
-
+//	 = :name", Country.class);
+//			    return query.setParameter("name", name).getSingleResult();
 	@Override
 	@Transactional(REQUIRED)
 	public String addNewProgram(String program) {
@@ -53,8 +60,8 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String deleteProgram(long programID) {
-		Program programInDB = findProgram(programID);
+	public String deleteProgram(String programName) {
+		Program programInDB = findProgram(programName);
 		if (programInDB != null) {
 			manager.remove(programInDB);
 			return "{\"message\":\"program has been successfully deleted\"}";
@@ -64,9 +71,9 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String updateProgram(long programID, String program) {
+	public String updateProgram(String programName, String program) {
 		Program programJSON = util.getObjectForJSON(program, Program.class);
-		Program programInDB = findProgram(programID);
+		Program programInDB = findProgram(programName);
 		if (programInDB != null) {
 			manager.remove(programInDB);
 			manager.persist(programJSON);
@@ -77,8 +84,8 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	}
 
-	private Program findProgram(long programID) {
-		return manager.find(Program.class, programID);
+	private Program findProgram(String programName) {
+		return manager.find(Program.class, programName);
 	}
 
 	public void setManager(EntityManager manager) {
