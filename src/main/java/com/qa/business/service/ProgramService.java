@@ -6,6 +6,8 @@ public interface ProgramService {
 
 	String getProgramsByType(String programType);
 
+	String getProgramsByName(String programName);
+
 	String addNewProgram(String program);
 
 	String deleteProgram(String programName);

@@ -5,6 +5,8 @@ public interface ProgramRepository {
 	String getAllPrograms();
 	
 	String getProgramsByType(String programType);
+	
+	String getProgramsByName(String programName);
 
 	String addNewProgram(String program);
 

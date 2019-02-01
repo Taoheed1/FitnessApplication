@@ -40,16 +40,22 @@ public class ProgramDBRepository implements ProgramRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String getProgramsByType(String programType) {
-//		TypedQuery<Program> query = manager.createQuery("Select a FROM Program a WHERE a.programType", Program.class);
-//		Collection<Program> programsOfType = (Collection<Program>) query.setParameter("programType", programType).getResultList();
 		Query query = manager.createQuery("Select a FROM Program a");
 		List<Program> allPrograms = query.getResultList();
-		List<Program> programsOfType = allPrograms.stream().filter(i -> i.getProgramType().equals(programType)).collect(Collectors.toList());
-
+		List<Program> programsOfType = allPrograms.stream().filter(i -> i.getProgramType().equals(programType))
+				.collect(Collectors.toList());
 		return util.getJSONForObject(programsOfType);
 	}
-//	 = :name", Country.class);
-//			    return query.setParameter("name", name).getSingleResult();
+
+	@Override
+	@Transactional(REQUIRED)
+	public String getProgramsByName(String programName) {
+		Query query = manager.createQuery("Select a FROM Program a");
+		List<Program> allPrograms = query.getResultList();
+		List<Program> programs = allPrograms.stream().filter(i -> i.getProgramName().equals(programName))
+				.collect(Collectors.toList());
+		return util.getJSONForObject(programs);
+	}
 	@Override
 	@Transactional(REQUIRED)
 	public String addNewProgram(String program) {

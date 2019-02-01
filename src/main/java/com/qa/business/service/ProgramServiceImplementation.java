@@ -18,6 +18,11 @@ public class ProgramServiceImplementation implements ProgramService{
 	public String getProgramsByType(String program) {
 		return repo.getProgramsByType(program);
 	}
+	
+	@Override
+	public String getProgramsByName(String program) {
+		return repo.getProgramsByName(program);
+	}
 
 	@Override
 	public String addNewProgram(String program) {
