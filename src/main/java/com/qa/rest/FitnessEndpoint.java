@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 
 import com.qa.business.service.ProgramService;
 import com.qa.business.service.UserService;
-import com.qa.persistance.domain.Account;
 
 @Path("/fitness")
 public class FitnessEndpoint {

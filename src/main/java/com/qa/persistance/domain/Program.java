@@ -1,33 +1,25 @@
 package com.qa.persistance.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Program {
 
 	@Id
 	private String programName;
+	private int day;
 	private String exerciseName;
 	private int reps;
 	private int sets;
 	private String programType;
-	// @OneToMany(fetch = FetchType.EAGER, mappedBy="programName",
-	// cascade=CascadeType.ALL)
-	// private List<Account> users = new ArrayList<>();
 
 	public Program() {
 	}
 
-	public Program(String programName, String exerciseName, int reps, int sets, String programType) {
+	public Program(String programName, int day, String exerciseName, int reps, int sets, String programType) {
 		this.programName = programName;
+		this.day = day;
 		this.exerciseName = exerciseName;
 		this.reps = reps;
 		this.sets = sets;
@@ -40,6 +32,14 @@ public class Program {
 
 	public void setProgramName(String programName) {
 		this.programName = programName;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public String getExerciseName() {

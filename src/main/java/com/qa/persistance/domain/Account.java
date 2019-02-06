@@ -1,9 +1,15 @@
 package com.qa.persistance.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,6 +22,9 @@ public class Account {
 	private String userName;
 	private String password;
 	private String proficiency;
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="programName")
+	private List<Program> progamExerciseList = new ArrayList<>();
 
 	public Account() {
 	}

@@ -1,7 +1,5 @@
 package com.qa.persistance.repository;
 
-import com.qa.persistance.domain.Account;
-
 public interface UserRepository {
 
 	String getAllUsers();
