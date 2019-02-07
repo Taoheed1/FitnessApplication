@@ -1,12 +1,16 @@
 package com.qa.persistance.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Program {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long programID;
 	private String programName;
 	private int day;
 	private String exerciseName;
@@ -15,6 +19,14 @@ public class Program {
 	private String programType;
 
 	public Program() {
+	}
+
+	public Long getProgramID() {
+		return programID;
+	}
+
+	public void setProgramID(Long programID) {
+		this.programID = programID;
 	}
 
 	public Program(String programName, int day, String exerciseName, int reps, int sets, String programType) {

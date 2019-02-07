@@ -22,9 +22,9 @@ public class Account {
 	private String userName;
 	private String password;
 	private String proficiency;
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="programName")
-	private List<Program> progamExerciseList = new ArrayList<>();
+//	@OneToMany(fetch = FetchType.EAGER)
+//	@JoinColumn(name="programName")
+//	private List<Program> progamExerciseList = new ArrayList<>();
 
 	public Account() {
 	}

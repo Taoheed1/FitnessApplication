@@ -70,11 +70,11 @@ public class FitnessEndpoint {
 		return service_user.deleteUser(userID);
 	}
 	
-	@Path("/deleteProgram/{progName}")
+	@Path("/deleteProgram/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteProgram(@PathParam("progName") String programName) {
-		return service_prog.deleteProgram(programName);
+	public String deleteProgram(@PathParam("id") Long programID) {
+		return service_prog.deleteProgram(programID);
 	}
 	@Path("/updateUser/{id}")
 	@PUT
@@ -83,11 +83,11 @@ public class FitnessEndpoint {
 		return service_user.updateUser(userID, account);
 	}
 
-	@Path("/updateProgram/{progName}")
+	@Path("/updateProgram/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updatePrograms(@PathParam("progName") String programName, String program) {
-		return service_prog.updateProgram(programName, program);
+	public String updatePrograms(@PathParam("programID") Long programID, String program) {
+		return service_prog.updateProgram(programID, program);
 	}
 
 	public void setUserService(UserService service_user) {

@@ -10,7 +10,7 @@ public interface ProgramService {
 
 	String addNewProgram(String program);
 
-	String deleteProgram(String programName);
+	String deleteProgram(Long programID);
 
-	String updateProgram(String programName, String program);
+	String updateProgram(Long programID, String program);
 }

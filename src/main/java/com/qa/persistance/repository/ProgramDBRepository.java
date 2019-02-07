@@ -66,8 +66,8 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String deleteProgram(String programName) {
-		Program programInDB = findProgram(programName);
+	public String deleteProgram(Long programID) {
+		Program programInDB = findProgram(programID);
 		if (programInDB != null) {
 			manager.remove(programInDB);
 			return "{\"message\":\"program has been successfully deleted\"}";
@@ -77,9 +77,9 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	@Override
 	@Transactional(REQUIRED)
-	public String updateProgram(String programName, String program) {
+	public String updateProgram(Long programID, String program) {
 		Program programJSON = util.getObjectForJSON(program, Program.class);
-		Program programInDB = findProgram(programName);
+		Program programInDB = findProgram(programID);
 		if (programInDB != null) {
 			manager.remove(programInDB);
 			manager.persist(programJSON);
@@ -90,8 +90,8 @@ public class ProgramDBRepository implements ProgramRepository {
 
 	}
 
-	private Program findProgram(String programName) {
-		return manager.find(Program.class, programName);
+	private Program findProgram(Long programID) {
+		return manager.find(Program.class, programID);
 	}
 
 	public void setManager(EntityManager manager) {
